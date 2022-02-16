@@ -1,0 +1,50 @@
+#+TITLE: Declerative personal config using Ansible playbooks written in EDN
+#+DATE: 2022-02-15
+#+PROPERTY: status draft
+
+* What does it look like?
+#+begin_src clojure
+[{:name "hi"
+  :hosts ["localhost"]
+
+  :vars {:user "_____"
+         :home "/home/{{ user }}"}
+
+  :tasks
+  [{:file {:path "{{ home }}/{{ item }}"
+           :state "directory"}
+    :loop [".local/bin"
+           ".config/fish/functions"
+           ".local/share/qutebrowser/userscripts"]}
+
+   ...
+#+end_src
+
+Using multiline strings is straightforward, despite not being the prettiest thing I've seen:
+#+begin_src clojure
+{:name "Sway environment variables"
+ :blockinfile {:path "/etc/environment"
+               :block "# https://wiki.archlinux.org/index.php/Wayland#Qt_5
+export QT_QPA_PLATFORMTHEME=qt5ct
+# https://github.com/swaywm/sway/issues/595
+export _JAVA_AWT_WM_NONREPARENTING=1"}}
+#+end_src
+
+* Setup
+#+begin_src shell
+alias ednsible-playbook="ednsible playbook"
+alias ednsible-lint="ednsible lint"
+#+end_src
+
+* Rationale
+Nothing special, it's just fun to write Clojure
+# mention that you can always regret and migrate back to YAML
+# include a babashka one-liner for converting edn->yaml
+
+* Workflow
+formatting with [[https://cljdoc.org/d/zprint/zprint/][zprint]] (Available on [[https://aur.archlinux.org/packages/zprint-bin][AUR]])
+
+* Converting to YAML instead of JSON
+# תסביר למה אתה לא ממיר לג'ייסון, כי זה אמור לעבוד
+# תחפש את הלינקים האלה שמראים שג'ייסון הוא לא באמת סאבסט של יאמל
+# כמו כן תבדוק אם אנסיבל-לינט עובד נורמלי על יאמל, כי על ג'ייסון הוא לא

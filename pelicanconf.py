@@ -39,3 +39,6 @@ PLUGIN_PATHS = [str(Path("~/.local/pelican-plugins").expanduser())]
 PLUGINS = ["org_reader"]
 ORG_READER_EMACS_LOCATION = "/usr/bin/emacs"
 ORG_READER_EMACS_SETTINGS = Path("./emacs_settings.el").absolute()
+
+DISPLAY_PAGES_ON_MENU = False
+DISPLAY_CATEGORIES_ON_MENU = False
