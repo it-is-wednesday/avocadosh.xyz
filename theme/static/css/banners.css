@@ -1,0 +1,14 @@
+#banner-top {
+  background: url("/theme/images/top.png") no-repeat center,
+    url("/theme/images/top-grad.png") repeat-x scroll;
+  height: var(--banner-height);
+  display: flex;
+  align-items: baseline;
+  flex-direction: column;
+}
+
+#banner-bottom {
+  background: url("/theme/images/bottom.png") no-repeat center,
+    url("/theme/images/bottom-grad.png") repeat-x scroll;
+  height: var(--banner-height);
+}

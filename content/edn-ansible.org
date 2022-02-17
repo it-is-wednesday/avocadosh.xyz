@@ -1,4 +1,4 @@
-#+TITLE: Declerative personal desktop config using Ansible playbooks written in EDN
+#+TITLE: Personal EDN Ansible Playbooks
 #+DATE: 2022-02-15
 
 * What does it look like?
