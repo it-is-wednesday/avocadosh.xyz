@@ -1,8 +1,8 @@
-#+TITLE: Declerative personal config using Ansible playbooks written in EDN
+#+TITLE: Declerative personal desktop config using Ansible playbooks written in EDN
 #+DATE: 2022-02-15
-#+PROPERTY: status draft
 
 * What does it look like?
+Here's how most of the tasks look like:
 #+begin_src clojure
 [{:name "hi"
   :hosts ["localhost"]
@@ -30,21 +30,57 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export _JAVA_AWT_WM_NONREPARENTING=1"}}
 #+end_src
 
+* Rationale
+Nothing special, it's just fun to write Clojure :) I do generally dislike YAML because of its extreme, uncalled-for minimalism. It may or may not lead to me shooting myself in the foot (it does).
+
+If anything goes south I, can always resort back to it, anyways:
+#+begin_src shell
+cat playbook.edn | bb '(-> *in* slurp edn/read-string (yaml/generate-string :dumper-options {:flow-style :block}))'
+#+end_src
+
 * Setup
+Since every Ansible command I run requires a compilation step, I've written a short [[https://babashka.org/][Babashka]] script to act as a middleman on each Ansible run. Luckily, Babashka comes with YAML (and obviously EDN) support built-in.
+#+begin_src clojure
+#!/bin/env bb
+(import [java.io File])
+(require '[clojure.core.match :refer [match]])
+(require '[babashka.process :refer [process check]])
+
+(defn edn->yaml
+  [file-path]
+  (-> file-path
+      slurp
+      edn/read-string
+      (yaml/generate-string :dumper-options {:flow-style :block})))
+
+(defn main
+  [action edn-playbook extra-args]
+  (let [exec (format "ansible-%s" action)
+        yaml-file (.getAbsolutePath (File/createTempFile "playbook" ".yaml"))
+        cmd (into [exec yaml-file] extra-args)]
+    (spit yaml-file (edn->yaml edn-playbook))
+    @(process cmd {:out :inherit})))
+
+(match (vec *command-line-args*)
+  [action playbook & args] (main action playbook args)
+  [action playbook] (main action playbook [])
+  :else (println "Usage: ednsible ACTION PLAYBOOK [EXTRA_ARGS]"))
+
+nil
+#+end_src
+
+I saved the script as =ednsible= and created these two aliases to avoid unfortunate scenarios:
 #+begin_src shell
 alias ednsible-playbook="ednsible playbook"
 alias ednsible-lint="ednsible lint"
 #+end_src
 
-* Rationale
-Nothing special, it's just fun to write Clojure
-# mention that you can always regret and migrate back to YAML
-# include a babashka one-liner for converting edn->yaml
+** Why convert to YAML instead of JSON?
+An alternative path would be to generate JSON instead of YAML, since [[https://yaml.org/spec/1.2.2/#12-yaml-history][JSON is supposedly a subset of YAML 1.2]]. However:
+1. =ansible-lint= doesn't work at all when given a JSON playbook, even when given a JSON playbook that works perfectly with =ansible-playbook=
+2. Seems like the subsettery topic is [[https://metacpan.org/pod/JSON::XS#JSON-and-YAML][controversial]]. With my luck, I'm sure I'll step on a mine in this area; So I'd rather take the path of least resistance as YAML support is baked into Babashka :)
+3. The YAML parser that comes with Babashka is [[https://github.com/clj-commons/clj-yaml][clj-yaml]], which is a wrapper around [[https://mvnrepository.com/artifact/org.yaml/snakeyaml][SnakeYAML]], which is a 1.1 parser 🙃
 
-* Workflow
-formatting with [[https://cljdoc.org/d/zprint/zprint/][zprint]] (Available on [[https://aur.archlinux.org/packages/zprint-bin][AUR]])
-
-* Converting to YAML instead of JSON
-# תסביר למה אתה לא ממיר לג'ייסון, כי זה אמור לעבוד
-# תחפש את הלינקים האלה שמראים שג'ייסון הוא לא באמת סאבסט של יאמל
-# כמו כן תבדוק אם אנסיבל-לינט עובד נורמלי על יאמל, כי על ג'ייסון הוא לא
+* Tooling
+- [[https://cljdoc.org/d/zprint/zprint/][zprint]][[[https://aur.archlinux.org/packages/zprint-bin][AUR]]] for formatting. Its default style is a bit too agressive (mostly Clojure-focused, I guess) so I use ={:style :indent-only}=.
+- [[https://github.com/clj-kondo/clj-kondo][clj-kondo]] for linting, although admittedly there isn't a whole lot to lint here. Duplicate keys and mismatched quotes are the only possible pain points.
