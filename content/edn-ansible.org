@@ -1,5 +1,6 @@
 #+TITLE: Personal EDN Ansible Playbooks
 #+DATE: 2022-02-15
+#+PROPERTY: tags Ansible, Clojure
 
 * Peek
 Here's how most of the tasks look like:

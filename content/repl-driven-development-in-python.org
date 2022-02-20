@@ -1,6 +1,6 @@
 #+TITLE: Attempting REPL-Driven Development in Python
 #+DATE: 2021-10-07
-#+CATEGORY: Python
+#+PROPERTY: tags Python
 
 Be wary that this article is Emacs-centric, but you can take some ideas out of here for other
 editors as well. A lot of the heavy lifting here is done by IPython, therefore is ideally
