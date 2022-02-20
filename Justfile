@@ -1,3 +1,4 @@
+# watch with configurable IP, to enable testing on your phone
 watch ip="127.0.0.1":
     pelican -lr content -s pelicanconf.py -t ./theme -b {{ ip }}
 

@@ -1,7 +1,7 @@
 #+TITLE: Personal EDN Ansible Playbooks
 #+DATE: 2022-02-15
 
-* What does it look like?
+* Peek
 Here's how most of the tasks look like:
 #+begin_src clojure
 [{:name "hi"
@@ -31,9 +31,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1"}}
 #+end_src
 
 * Rationale
-Nothing special, it's just fun to write Clojure :) I do generally dislike YAML because of its extreme, uncalled-for minimalism. It may or may not lead to me shooting myself in the foot (it does).
+Nothing special, it's just fun to write in Clojure :) I do generally dislike YAML because of its extreme, uncalled-for minimalism. It may or may not lead to me shooting myself in the foot (it does).
 
-If anything goes south I, can always resort back to it, anyways:
+If anything goes south, I can always resort back to it, anyways:
 #+begin_src shell
 cat playbook.edn | bb '(-> *in* slurp edn/read-string (yaml/generate-string :dumper-options {:flow-style :block}))'
 #+end_src
@@ -55,9 +55,9 @@ Since every Ansible command I run requires a compilation step, I've written a sh
 
 (defn main
   [action edn-playbook extra-args]
-  (let [exec (format "ansible-%s" action)
+  (let [exec      (format "ansible-%s" action)
         yaml-file (.getAbsolutePath (File/createTempFile "playbook" ".yaml"))
-        cmd (into [exec yaml-file] extra-args)]
+        cmd       (into [exec yaml-file] extra-args)]
     (spit yaml-file (edn->yaml edn-playbook))
     @(process cmd {:out :inherit})))
 
