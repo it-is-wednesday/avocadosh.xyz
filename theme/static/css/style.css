@@ -1,5 +1,6 @@
 @import "borders.css";
 @import "banners.css";
+@import "fruits.css";
 
 :root {
   --headline-color: #0066cc;
@@ -8,9 +9,11 @@
 
 html {
   background-color: #daf3fd;
+  word-break: break-word;
+
+  /* for mobile */
   padding-right: 14px;
   padding-left: 14px;
-  word-break: break-word;
 
   /* beacuse firefox mobile acted up; interface was really small there */
   font-size: 2vh;
@@ -28,9 +31,17 @@ a {
   text-decoration: none;
 }
 
-#banner-top > h1 {
-  margin-inline-start: 20px;
+h1 {
   margin-block-start: 0.5rem;
+  color: #22436c;
+}
+
+#banner-top > h1 {
+  margin-inline-start: 1rem;
+}
+
+#index > h1 {
+  margin-inline-start: 3rem;
 }
 
 #content {
@@ -72,6 +83,34 @@ a {
 
 .org-src-container {
   overflow-x: scroll;
+}
+
+blockquote {
+  display: block;
+  font-style: italic;
+  padding: 1rem;
+  background: #3498db14;
+  margin: 0;
+  border-left: 2px solid #3498db;
+}
+
+.cautious {
+  display: block;
+  padding: 1rem;
+  background: #ffcccd;
+  margin: 0;
+  border-left: 2px solid #d41c1d;
+}
+
+.walked-inland {
+  text-transform: uppercase;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.index {
+  padding: 0 3rem;
 }
 
 @media (min-width: 1000px) {
