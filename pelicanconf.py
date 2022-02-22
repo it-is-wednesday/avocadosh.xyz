@@ -1,15 +1,27 @@
+import sys
+import os
+
+sys.path.append(os.curdir)
+
+from collage import generate_collage, fetch_albums
 from pathlib import Path
 
-AUTHOR = 'maror'
-SITENAME = 'maror'
-SITEURL = ''
+from dotenv import load_dotenv
+
+load_dotenv()
+
+LASTFM_COLLAGE_PATH = "./content/static/lastfm-collage.webp"
+
+AUTHOR = "maror"
+SITENAME = "maror"
+SITEURL = ""
 THEME = "notmyidea"
 
-PATH = 'content'
+PATH = "content"
 
-TIMEZONE = 'Asia/Jerusalem'
+TIMEZONE = "Asia/Jerusalem"
 
-DEFAULT_LANG = 'en'
+DEFAULT_LANG = "en"
 
 STATIC_PATHS = ["static"]
 
@@ -21,19 +33,23 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Pelican', 'https://getpelican.com/'),
-         ('Python.org', 'https://www.python.org/'),
-         ('Jinja2', 'https://palletsprojects.com/p/jinja/'),
-         ('You can modify those links in your config file', '#'),)
+LINKS = (
+    ("Pelican", "https://getpelican.com/"),
+    ("Python.org", "https://www.python.org/"),
+    ("Jinja2", "https://palletsprojects.com/p/jinja/"),
+    ("You can modify those links in your config file", "#"),
+)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (
+    ("You can add links in your config file", "#"),
+    ("Another social link", "#"),
+)
 
 DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+# RELATIVE_URLS = True
 
 PLUGIN_PATHS = [str(Path("~/.local/pelican-plugins").expanduser())]
 PLUGINS = ["org_reader", "jinja2content"]
@@ -42,3 +58,7 @@ ORG_READER_EMACS_SETTINGS = Path("./emacs_settings.el").absolute()
 
 DISPLAY_PAGES_ON_MENU = False
 DISPLAY_CATEGORIES_ON_MENU = False
+
+# Generate collage
+if not Path(LASTFM_COLLAGE_PATH).exists():
+    generate_collage(fetch_albums()).save(LASTFM_COLLAGE_PATH, quality=40)

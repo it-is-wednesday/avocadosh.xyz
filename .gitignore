@@ -1,2 +1,4 @@
+.env
 output
 __pycache__
+content/static/lastfm-collage.webp

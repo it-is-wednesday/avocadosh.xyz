@@ -54,4 +54,7 @@ save_as: index.html
         "converts webpages into <i>readable</i> epub/mobi/pdf files. like, removes the usual webshit clutter",
         "clojure") }}
 </ul>
+<a href="{{ SITEURL }}/static/lastfm-collage.webp">
+    <img class="wide-image" src="{{ SITEURL }}/static/lastfm-collage.webp">
+</a>
 </div>

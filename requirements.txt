@@ -1,0 +1,7 @@
+pelican[markdown]
+pelican-seo
+pelican-jinja2content
+pylast
+typogrify
+Pillow
+python-dotenv

@@ -113,6 +113,11 @@ blockquote {
   padding: 0 3rem;
 }
 
+.wide-image {
+  width: 100%;
+  object-fit: contain;
+}
+
 @media (min-width: 1000px) {
   body {
     max-width: 50rem;
