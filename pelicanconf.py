@@ -36,7 +36,7 @@ DEFAULT_PAGINATION = False
 #RELATIVE_URLS = True
 
 PLUGIN_PATHS = [str(Path("~/.local/pelican-plugins").expanduser())]
-PLUGINS = ["org_reader"]
+PLUGINS = ["org_reader", "jinja2content"]
 ORG_READER_EMACS_LOCATION = "/usr/bin/emacs"
 ORG_READER_EMACS_SETTINGS = Path("./emacs_settings.el").absolute()
 
