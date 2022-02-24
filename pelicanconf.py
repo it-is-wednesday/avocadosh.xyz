@@ -56,8 +56,9 @@ PLUGINS = ["org_reader", "jinja2content"]
 ORG_READER_EMACS_LOCATION = "/usr/bin/emacs"
 ORG_READER_EMACS_SETTINGS = Path("./emacs_settings.el").absolute()
 
-DISPLAY_PAGES_ON_MENU = False
-DISPLAY_CATEGORIES_ON_MENU = False
+INDEX_SAVE_AS = 'posts.html'
+
+MENUITEMS = (("Home", "/"), ("Posts", "/posts.html"))
 
 # Generate collage
 if not Path(LASTFM_COLLAGE_PATH).exists():
