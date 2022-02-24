@@ -6,11 +6,16 @@ sys.path.append(os.curdir)
 from collage import generate_collage, fetch_albums
 from pathlib import Path
 
+from pelican.generators import Generator
+from pelican.writers import Writer
+from pelican import signals
+
 from dotenv import load_dotenv
 
 load_dotenv()
 
 LASTFM_COLLAGE_PATH = "./content/static/lastfm-collage.webp"
+LASTFM_RERENDER = False
 
 AUTHOR = "maror"
 SITENAME = "maror"
@@ -60,6 +65,14 @@ INDEX_SAVE_AS = 'posts.html'
 
 MENUITEMS = (("Home", "/"), ("Posts", "/posts.html"))
 
-# Generate collage
-if not Path(LASTFM_COLLAGE_PATH).exists():
-    generate_collage(fetch_albums()).save(LASTFM_COLLAGE_PATH, quality=40)
+
+def get_collage_generator(pelican_object):
+    class CollageGenerator(Generator):
+        def generate_output(self, writer: Writer):
+            if not Path(LASTFM_COLLAGE_PATH).exists():
+                generate_collage(fetch_albums()).save(LASTFM_COLLAGE_PATH, quality=40)
+
+    return CollageGenerator
+
+
+signals.get_generators.connect(get_collage_generator)
