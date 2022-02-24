@@ -2,3 +2,8 @@
 output
 __pycache__
 content/static/lastfm-collage.webp
+
+# pandoc resume
+*.log
+*.swo
+*.swp

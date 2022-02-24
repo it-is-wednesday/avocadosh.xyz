@@ -1,0 +1,46 @@
+* Ma'or Kadosh
+
+--------------
+
+#+begin_quote
+Tel Aviv · 1999 · [[mailto:maor@avocadosh.xyz][maor@avocadosh.xyz]]\\
+System Administrator & Fullstack Developer specialized in *Python*, *GNU/Linux*, and *Splunk*
+#+end_quote
+
+--------------
+
+** Experience
+- 2020-2022 :: *Monitoring-related scripting, Sysadmin and DevOps at Mamram*
+  - *Splunk* project involving SPL and *macros* reused across tens of dashboards
+  - Deploying and maintaining *Telegraf* and *Collectd* agents on both *GNU/Linux* and *Windows*
+  - Maintainment of agent configuration via *Ansible* across hundreds of servers
+  - Development of custom Python agents using *psutil*
+  - Complementory Python and *PowerShell* scripts for the monitoring agents
+
+- 2020-2021 :: *Fullstack Developer at Disputec*
+  - Kotlin backend
+  - OpenAPI
+  - Vue + Typescript
+
+- 2019-2021 :: *Fullstack Developer at Mamram*
+  - Monitoring application
+  - NodeJS + Express
+  - Angular
+
+- 2018 :: *Python Developmer at Ubimo*
+  - Web scraping using BeautifulSoup, Requests, and Selenium
+
+- 2017 :: *PHP Developer at DataCheck*
+  - SOAP APIs
+
+** Education
+- 2018 :: *DevOps Course* at Basmach (IDF)
+- 2015-present :: *BSc, Computer Science and Mathematics* at Netanya Academic
+  College
+
+** Hobby Programming
+I enjoy fiddling with niche programming languages and techniques :) In addition to
+Python, I have developed a couple of tools in OCaml, Clojure, and Emacs Lisp.
+They are listed under my GitHub page and on my personal website:
+- https://github.com/it-is-wednesday/
+- https://avocadosh.xyz

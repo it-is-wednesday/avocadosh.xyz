@@ -63,7 +63,7 @@ ORG_READER_EMACS_SETTINGS = Path("./emacs_settings.el").absolute()
 
 INDEX_SAVE_AS = 'posts.html'
 
-MENUITEMS = (("Home", "/"), ("Posts", "/posts.html"))
+MENUITEMS = (("Home", "/"), ("Posts", "/posts.html"), ("CV", "/resume.pdf"))
 
 
 def get_collage_generator(pelican_object):

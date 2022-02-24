@@ -1,0 +1,43 @@
+OUT_DIR := "../output"
+TMP_DIR := "/tmp/pandoc-resume"
+FILE_NAME := "resume"
+STYLES_DIR := "styles"
+STYLE := "chmduquesne"
+
+all: setup html docx pdf
+
+setup:
+    mkdir -p {{OUT_DIR}}
+    mkdir -p {{TMP_DIR}}
+
+pdf:
+    @echo {{FILE_NAME}}.pdf
+
+    pandoc --standalone --template {{STYLES_DIR}}/{{STYLE}}.tex \
+        --from org --to context \
+        --variable papersize=A4 \
+        --output {{TMP_DIR}}/{{FILE_NAME}}.tex {{FILE_NAME}}.org > /dev/null
+
+    mtxrun --path={{TMP_DIR}} \
+           --result={{FILE_NAME}}.pdf \
+           --script context {{FILE_NAME}}.tex > {{TMP_DIR}}/context_{{FILE_NAME}}.log 2>&1
+
+    cp {{TMP_DIR}}/{{FILE_NAME}}.pdf {{OUT_DIR}}/
+
+html:
+    @echo {{FILE_NAME}}.html
+
+    pandoc {{FILE_NAME}}.org --standalone \
+        --include-in-header {{STYLES_DIR}}/{{STYLE}}.css \
+        --lua-filter={{STYLES_DIR}}/pdc-links-target-blank.lua \
+        --from org --to html \
+        --output {{OUT_DIR}}/{{FILE_NAME}}.html \
+        --metadata pagetitle={{FILE_NAME}}
+
+docx:
+    @echo {{FILE_NAME}}.docx
+
+    pandoc --standalone {{FILE_NAME}}.org --output {{OUT_DIR}}/{{FILE_NAME}}.docx
+
+watch:
+    watchexec --ignore output "just setup pdf"
