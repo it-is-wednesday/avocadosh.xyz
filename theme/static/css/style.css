@@ -16,7 +16,7 @@ html {
   padding-left: 14px;
 
   /* beacuse firefox mobile acted up; interface was really small there */
-  font-size: 2vh;
+  font-size: max(2vh, 15px);
   font-size-adjust: none;
 }
 
@@ -34,14 +34,11 @@ a {
 h1 {
   margin-block-start: 0.5rem;
   color: #22436c;
-}
-
-#banner-top > h1 {
-  margin-inline-start: 1rem;
+  word-break: normal;
 }
 
 #index > h1 {
-  margin-inline-start: 3rem;
+  margin-inline-start: 2rem;
 }
 
 #content {
@@ -73,6 +70,23 @@ h1 {
   display: flex;
   flex-direction: row;
   gap: 1rem;
+}
+
+#banner-top-top {
+  margin-inline-start: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#banner-top-top-socials {
+  padding-right: 2rem;
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  font-size: 0.8rem;
+  flex-wrap: wrap;
 }
 
 .entry-title {
@@ -125,8 +139,16 @@ blockquote {
   object-fit: contain;
 }
 
+.socials-sep {
+  margin: 0 8px;
+}
+
 @media (min-width: 1000px) {
   body {
     max-width: 50rem;
+  }
+
+  #banner-top-top {
+    flex-direction: row;
   }
 }

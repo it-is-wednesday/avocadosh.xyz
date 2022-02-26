@@ -47,8 +47,11 @@ LINKS = (
 
 # Social widget
 SOCIAL = (
-    ("You can add links in your config file", "#"),
-    ("Another social link", "#"),
+    ("L*nkedIn", "https://www.linkedin.com/in/ma-or/"),
+    ("GitHub", "https://github.com/it-is-wednesday/"),
+    ("Last.fm", "https://www.last.fm/user/jpegaga"),
+    ("Instagram", "https://www.instagram.com/maror.pashosh/"),
+    ("OpenDota", "https://www.opendota.com/players/118991125"),
 )
 
 DEFAULT_PAGINATION = False
