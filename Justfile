@@ -8,4 +8,4 @@ publish:
     {{PELICAN}} content -s publishconf.py \
         -t ./theme \
         -o /tmp/blog-output
-    rsync -Aavx /tmp/blog-output/ www-data@avocadosh.xyz:/var/www/blog/
+    rsync -Aavx /tmp/blog-output/ www-data@avocadosh.xyz:/var/www/avocadosh.xyz/
