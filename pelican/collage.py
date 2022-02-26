@@ -1,6 +1,6 @@
 import os
 from itertools import product
-from typing import Iterable, List
+from typing import Iterable, Iterator
 from urllib.request import urlopen
 from dataclasses import dataclass
 
@@ -19,7 +19,7 @@ class Album:
     cover_art: Image.Image
 
 
-def fetch_albums() -> List[Album]:
+def fetch_albums() -> Iterator[Album]:
     """
     Fetch my 9 most listened albums from the past month
     Expects LASTFM_API_KEY and LASTFM_API_SECRET env vars
@@ -28,6 +28,8 @@ def fetch_albums() -> List[Album]:
     """
     api_key = os.getenv("LASTFM_API_KEY")
     api_secret = os.getenv("LASTFM_API_SECRET")
+    assert api_key is not None
+    assert api_secret is not None
     network = pylast.LastFMNetwork(api_key, api_secret)
     # despite only needing 9 albums for the collage, we'll fetch a bit more so we can discard
     # albums with no album art and just draw the next album instead
