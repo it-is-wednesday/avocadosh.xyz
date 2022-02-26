@@ -32,48 +32,30 @@ a {
 }
 
 h1 {
-  margin-block-start: 0.5rem;
   color: #22436c;
   word-break: normal;
 }
 
-#index > h1 {
-  margin-inline-start: 2rem;
-}
-
 #content {
   background: #ffffff;
-  padding: 2rem;
 }
 
 #content > h2 {
-  margin-block-start: 0;
   color: #22436c;
   font-weight: normal;
 }
 
 #post-list {
   list-style-type: none;
-  padding-inline-start: 0;
 }
 
-#post-list > li {
-  padding-bottom: 3rem;
-}
-
-#index {
-  position: relative;
-}
-
-#menu > ul {
-  list-style-type: none;
+#menu {
   display: flex;
   flex-direction: row;
   gap: 1rem;
 }
 
 #banner-top-top {
-  margin-inline-start: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -81,16 +63,15 @@ h1 {
 }
 
 #banner-top-top-socials {
-  padding-right: 2rem;
-  padding-top: 0.5rem;
   display: flex;
   flex-direction: row;
   font-size: 0.8rem;
   flex-wrap: wrap;
+  margin-bottom: 1.35rem;
 }
 
-.entry-title {
-  margin-block-start: 0;
+.index, #menu, #banner-top-top-socials, h1 {
+  padding: 0 2rem;
 }
 
 .entry-content img {
@@ -130,10 +111,6 @@ blockquote {
   flex-direction: column;
 }
 
-.index {
-  padding: 0 3rem;
-}
-
 .wide-image {
   width: 100%;
   object-fit: contain;
@@ -143,6 +120,7 @@ blockquote {
   margin: 0 8px;
 }
 
+/* rules for computer screens */
 @media (min-width: 1000px) {
   body {
     max-width: 50rem;
@@ -150,5 +128,9 @@ blockquote {
 
   #banner-top-top {
     flex-direction: row;
+  }
+
+  #banner-top-top-socials {
+    padding-top: 1rem;
   }
 }

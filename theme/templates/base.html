@@ -68,11 +68,9 @@
             </div>
 
             <nav id="menu">
-                <ul>
-                    {% for title, link in MENUITEMS %}
-                        <li><a href="{{ link }}">{{ title }}</a></li>
-                    {% endfor %}
-                </ul>
+                {% for title, link in MENUITEMS %}
+                    <a href="{{ link }}">{{ title }}</a>
+                {% endfor %}
             </nav>
         </header>
 
