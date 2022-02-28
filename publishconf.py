@@ -16,3 +16,4 @@ CATEGORY_FEED_ATOM = "feeds/{slug}.atom.xml"
 DELETE_OUTPUT_DIRECTORY = True
 
 LASTFM_RERENDER = True
+CV_RERENDER = True

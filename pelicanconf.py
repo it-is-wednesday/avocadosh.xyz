@@ -8,14 +8,19 @@ from pathlib import Path
 
 from pelican.generators import Generator
 from pelican.writers import Writer
-from pelican import signals
+from pelican import Pelican, signals
 
 from dotenv import load_dotenv
 
+import subprocess
+
 load_dotenv()
 
-LASTFM_COLLAGE_PATH = "./content/static/lastfm-collage.webp"
+LASTFM_COLLAGE_PATH = "content/static/lastfm-collage.webp"
 LASTFM_RERENDER = False
+
+CV_PATH = "./pandoc-cv/"
+CV_RERENDER = False
 
 AUTHOR = "maror"
 SITENAME = "maror"
@@ -64,18 +69,39 @@ PLUGINS = ["org_reader", "jinja2content"]
 ORG_READER_EMACS_LOCATION = "/usr/bin/emacs"
 ORG_READER_EMACS_SETTINGS = Path("./emacs_settings.el").absolute()
 
-INDEX_SAVE_AS = 'posts.html'
+INDEX_SAVE_AS = "posts.html"
 
-MENUITEMS = (("Home", "/"), ("Posts", "/posts.html"), ("CV", "/resume.pdf"))
+MENUITEMS = (("Home", "/"), ("Posts", "/posts.html"), ("CV", "/Maor Kadosh CV.html"))
 
 
-def get_collage_generator(pelican_object):
+def get_cv_generator(pelican_object: Pelican):
+    class CvGenerator(Generator):
+        def generate_output(self, writer: Writer):
+            print(writer.output_path)
+            cv_file = Path(CV_PATH)
+            if pelican_object.settings["CV_RERENDER"] or not cv_file.exists():
+                subprocess.run(
+                    [
+                        "just",
+                        "--justfile",
+                        cv_file.joinpath("Justfile").absolute(),
+                        "all",
+                    ]
+                )
+
+    return CvGenerator
+
+
+def get_collage_generator(pelican_object: Pelican):
     class CollageGenerator(Generator):
         def generate_output(self, writer: Writer):
-            if not Path(LASTFM_COLLAGE_PATH).exists():
+            should_rerender = pelican_object.settings["LASTFM_RERENDER"]
+            dest = Path
+            if should_rerender or not Path(LASTFM_COLLAGE_PATH).exists():
                 generate_collage(fetch_albums()).save(LASTFM_COLLAGE_PATH, quality=40)
 
     return CollageGenerator
 
 
+signals.get_generators.connect(get_cv_generator)
 signals.get_generators.connect(get_collage_generator)

@@ -3,7 +3,6 @@
 --------------
 
 #+begin_quote
-Tel Aviv · 1999 · [[mailto:maor@avocadosh.xyz][maor@avocadosh.xyz]]\\
 System Administrator & Fullstack Developer specialized in *Python*, *GNU/Linux*, and *Splunk*
 #+end_quote
 
