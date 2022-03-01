@@ -5,3 +5,4 @@ pylast
 typogrify
 Pillow
 python-dotenv
+sh

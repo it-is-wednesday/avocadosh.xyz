@@ -14,12 +14,13 @@ from dotenv import load_dotenv
 
 import subprocess
 
+from pandoc_cv import cv
+
 load_dotenv()
 
 LASTFM_COLLAGE_PATH = "content/static/lastfm-collage.webp"
 LASTFM_RERENDER = False
 
-CV_PATH = "./pandoc-cv/"
 CV_RERENDER = False
 
 AUTHOR = "maror"
@@ -71,22 +72,20 @@ ORG_READER_EMACS_SETTINGS = Path("./emacs_settings.el").absolute()
 
 INDEX_SAVE_AS = "posts.html"
 
-MENUITEMS = (("Home", "/"), ("Posts", "/posts.html"), ("CV", "/Maor Kadosh CV.html"))
+MENUITEMS = (("Home", "/"), ("Posts", "/posts.html"), ("CV", "/Maor Kadosh CV.pdf"))
 
 
 def get_cv_generator(pelican_object: Pelican):
     class CvGenerator(Generator):
         def generate_output(self, writer: Writer):
-            print(writer.output_path)
-            cv_file = Path(CV_PATH)
-            if pelican_object.settings["CV_RERENDER"] or not cv_file.exists():
-                subprocess.run(
-                    [
-                        "just",
-                        "--justfile",
-                        cv_file.joinpath("Justfile").absolute(),
-                        "all",
-                    ]
+            input_file = Path("./pandoc_cv/Maor Kadosh CV.org")
+
+            any_missing = not cv.already_generated(input_file.stem, writer.output_path)
+            if pelican_object.settings["CV_RERENDER"] or any_missing:
+                cv.generate_all(
+                    input_file,
+                    Path(writer.output_path),
+                    Path("./pandoc_cv/styles"),
                 )
 
     return CvGenerator
