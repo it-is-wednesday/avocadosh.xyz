@@ -95,7 +95,6 @@ def get_collage_generator(pelican_object: Pelican):
     class CollageGenerator(Generator):
         def generate_output(self, writer: Writer):
             should_rerender = pelican_object.settings["LASTFM_RERENDER"]
-            dest = Path
             if should_rerender or not Path(LASTFM_COLLAGE_PATH).exists():
                 generate_collage(fetch_albums()).save(LASTFM_COLLAGE_PATH, quality=40)
 
