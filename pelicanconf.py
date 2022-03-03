@@ -3,7 +3,7 @@ import os
 
 sys.path.append(os.curdir)
 
-from collage import generate_collage, fetch_albums
+from collage import generate_collage, fetch_albums, generate_test_collage
 from pathlib import Path
 
 from pelican.generators import Generator
@@ -18,8 +18,7 @@ from pandoc_cv import cv
 
 load_dotenv()
 
-LASTFM_COLLAGE_PATH = "content/static/lastfm-collage.webp"
-LASTFM_RERENDER = False
+LASTFM_MOCK = True
 
 CV_RERENDER = False
 
@@ -94,9 +93,13 @@ def get_cv_generator(pelican_object: Pelican):
 def get_collage_generator(pelican_object: Pelican):
     class CollageGenerator(Generator):
         def generate_output(self, writer: Writer):
-            should_rerender = pelican_object.settings["LASTFM_RERENDER"]
-            if should_rerender or not Path(LASTFM_COLLAGE_PATH).exists():
-                generate_collage(fetch_albums()).save(LASTFM_COLLAGE_PATH, quality=40)
+            dest = Path(writer.output_path).joinpath("theme/lastfm-collage.webp")
+            img = (
+                generate_test_collage()
+                if pelican_object.settings["LASTFM_MOCK"]
+                else generate_collage(fetch_albums())
+            )
+            img.save(dest.absolute(), quality=40)
 
     return CollageGenerator
 

@@ -79,7 +79,7 @@ def generate_all(input_file: Path, out_dir: Path, styles_dir: Path):
 
     title = input_file.stem
 
-    print("Generating CV:")
+    print("\nGenerating CV:")
 
     pdf(input_file, out_dir.joinpath(f"{title}.pdf"), styles_dir)
     print("  ✔ PDF")

@@ -3,6 +3,8 @@ from itertools import product
 from typing import Iterable, Iterator
 from urllib.request import urlopen
 from dataclasses import dataclass
+import random
+from string import ascii_lowercase
 
 import pylast
 from PIL import Image, ImageDraw, ImageFont
@@ -38,8 +40,6 @@ def fetch_albums() -> Iterator[Album]:
     # yield all items with a non-None album art
     for item in items:
         alb: pylast.Album = item.item
-
-        print(f'Fetching "{alb.title}" by {alb.artist}')
 
         if (
             alb.info["image"][0] is None
@@ -77,8 +77,12 @@ def overlay(text: str) -> Image.Image:
 def generate_collage(albums: Iterable[Album]):
     result_img = Image.new("RGBA", (3 * IMAGE_EDGE_SIZE, 3 * IMAGE_EDGE_SIZE))
 
+    print("\nGenerating Last.fm collage:")
+
     # place covers in (0, 300), (0, 600), (0, 900), (300, 0) ...
     for album, (x, y) in zip(albums, product(range(3), range(3))):
+        print(f'  ✔ Fetched "{album.title}" by {album.artist}')
+
         base_cover = album.cover_art
         label = f"{album.title}\n{album.artist}"
         img = Image.alpha_composite(base_cover, overlay(label))
@@ -87,3 +91,16 @@ def generate_collage(albums: Iterable[Album]):
 
     # from dust we came and to dust we will return
     return result_img.convert("RGB")
+
+
+def generate_test_collage():
+    def random_string() -> str:
+        letters = random.choices(ascii_lowercase + " ", k=random.randint(5, 50))
+        return "".join(letters).strip()
+
+    art = Image.open("collage/sample_album_cover.jpg").convert("RGBA")
+
+    return generate_collage(
+        Album(title=random_string(), artist=random_string(), cover_art=art)
+        for _ in range(9)
+    )
