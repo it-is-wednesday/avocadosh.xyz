@@ -1,10 +1,10 @@
 import os
+import random
+from dataclasses import dataclass
 from itertools import product
+from string import ascii_lowercase
 from typing import Iterable, Iterator
 from urllib.request import urlopen
-from dataclasses import dataclass
-import random
-from string import ascii_lowercase
 
 import pylast
 from PIL import Image, ImageDraw, ImageFont

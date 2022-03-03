@@ -1,19 +1,17 @@
-import sys
 import os
+import sys
 
 sys.path.append(os.curdir)
 
-from collage import generate_collage, fetch_albums, generate_test_collage
+import subprocess
 from pathlib import Path
 
+from dotenv import load_dotenv
+from pelican import Pelican, signals
 from pelican.generators import Generator
 from pelican.writers import Writer
-from pelican import Pelican, signals
 
-from dotenv import load_dotenv
-
-import subprocess
-
+from collage import fetch_albums, generate_collage, generate_test_collage
 from pandoc_cv import cv
 
 load_dotenv()

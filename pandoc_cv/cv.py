@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-from sh import Command
 from pathlib import Path
 from shutil import copy
+
+from sh import Command
 
 TMP_DIR = "/tmp/pandoc-resume"
 STYLE = "chmduquesne"
