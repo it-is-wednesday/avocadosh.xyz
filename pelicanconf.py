@@ -5,6 +5,7 @@ sys.path.append(os.curdir)
 
 import subprocess
 from pathlib import Path
+from typing import Optional
 
 from dotenv import load_dotenv
 from pelican import Pelican, signals
@@ -12,7 +13,7 @@ from pelican.generators import Generator
 from pelican.writers import Writer
 
 from collage import fetch_albums, generate_collage, generate_test_collage
-from pandoc_cv import cv
+import pandoc_cv
 
 load_dotenv()
 
@@ -34,8 +35,8 @@ DEFAULT_LANG = "en"
 STATIC_PATHS = ["static"]
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
-CATEGORY_FEED_ATOM = None
+FEED_ALL_ATOM: Optional[str] = None
+CATEGORY_FEED_ATOM: Optional[str] = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
@@ -77,9 +78,9 @@ def get_cv_generator(pelican_object: Pelican):
         def generate_output(self, writer: Writer):
             input_file = Path("./pandoc_cv/Maor Kadosh CV.org")
 
-            any_missing = not cv.already_generated(input_file.stem, writer.output_path)
+            any_missing = not pandoc_cv.already_generated(input_file.stem, writer.output_path)
             if pelican_object.settings["CV_RERENDER"] or any_missing:
-                cv.generate_all(
+                pandoc_cv.generate_all(
                     input_file,
                     Path(writer.output_path),
                     Path("./pandoc_cv/styles"),

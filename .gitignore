@@ -1,6 +1,7 @@
 .env
 output
 __pycache__
+.dir-locals.el
 
 # pandoc resume
 *.log

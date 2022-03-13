@@ -65,7 +65,7 @@ def docx(input_file: Path, dest: Path):
     )
 
 
-def already_generated(title: str, out_dir_path: str):
+def already_generated(title: str, out_dir_path: str) -> bool:
     out_dir = Path(out_dir_path)
     files_to_find = [f"{title}.{ext}" for ext in ["pdf", "html", "docx"]]
     for f in files_to_find:
