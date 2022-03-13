@@ -93,6 +93,7 @@ def get_collage_generator(pelican_object: Pelican):
     class CollageGenerator(Generator):
         def generate_output(self, writer: Writer):
             dest = Path(writer.output_path).joinpath("theme/lastfm-collage.webp")
+            dest.parent.mkdir(exist_ok=True)
             img = (
                 generate_test_collage()
                 if pelican_object.settings["LASTFM_MOCK"]
