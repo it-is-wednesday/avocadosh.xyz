@@ -28,11 +28,11 @@ def pdf(input_file: Path, dest: Path, styles_dir: Path):
 
     mtxrun(
         f"{input_file.stem}.tex",
+        "context",
         path=TMP_DIR,
         result=f"{input_file.stem}.pdf",
-        script="context",
+        script=True,
         _out=f"{TMP_DIR}/context.log",
-        _long_sep=" ",
     )
 
     copy(f"{TMP_DIR}/{input_file.stem}.pdf", dest)
