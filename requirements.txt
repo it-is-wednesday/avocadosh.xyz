@@ -4,5 +4,6 @@ pelican-jinja2content
 pylast
 typogrify
 Pillow
+types-Pillow
 python-dotenv
 sh
