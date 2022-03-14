@@ -2,6 +2,7 @@
 output
 __pycache__
 .dir-locals.el
+collage/dist
 
 # pandoc resume
 *.log
