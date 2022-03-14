@@ -26,12 +26,15 @@ def pdf(input_file: Path, dest: Path, styles_dir: Path):
         output=f"{TMP_DIR}/{input_file.stem}.tex",
     )
 
+    # mtxrun wouldn't do its job when given the last two parameters at the
+    # beginning, so we have to use the ugly syntax to make sure they're at the
+    # end
     mtxrun(
-        f"{input_file.stem}.tex",
+        f"--path={TMP_DIR}",
+        f"--result={input_file.stem}.pdf",
+        "--script",
         "context",
-        path=TMP_DIR,
-        result=f"{input_file.stem}.pdf",
-        script=True,
+        f"{input_file.stem}.tex",
         _out=f"{TMP_DIR}/context.log",
     )
 
