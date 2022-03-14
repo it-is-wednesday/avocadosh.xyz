@@ -8,12 +8,12 @@ from pathlib import Path
 from typing import Optional
 
 from dotenv import load_dotenv
-from pelican import Pelican, signals
 from pelican.generators import Generator
 from pelican.writers import Writer
 
+import cv
 from collage import fetch_albums, generate_collage, generate_test_collage
-import pandoc_cv
+from pelican import Pelican, signals
 
 load_dotenv()
 
@@ -76,14 +76,14 @@ MENUITEMS = (("Home", "/"), ("Posts", "/posts.html"), ("CV", "/Maor Kadosh CV.pd
 def get_cv_generator(pelican_object: Pelican):
     class CvGenerator(Generator):
         def generate_output(self, writer: Writer):
-            input_file = Path("./pandoc_cv/Maor Kadosh CV.org")
+            input_file = Path("./cv/Maor Kadosh CV.org")
 
-            any_missing = not pandoc_cv.already_generated(input_file.stem, writer.output_path)
+            any_missing = not cv.already_generated(input_file.stem, writer.output_path)
             if pelican_object.settings["CV_RERENDER"] or any_missing:
-                pandoc_cv.generate_all(
+                cv.generate_all(
                     input_file,
                     Path(writer.output_path),
-                    Path("./pandoc_cv/styles"),
+                    Path("./cv/styles"),
                 )
 
     return CvGenerator

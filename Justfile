@@ -13,7 +13,7 @@ publish: clean lint build-collage-generator
         -t ./theme \
         -o /tmp/blog-output
 
-    rsync -Aavx --delete /tmp/blog-output/ www-data@avocadosh.xyz:/var/www/avocadosh.xyz/
+    rsync -Aax --delete /tmp/blog-output/ www-data@avocadosh.xyz:/var/www/avocadosh.xyz/
 
     scp -r ./collage/dist/*.whl www-data@avocadosh.xyz:/tmp/
 
