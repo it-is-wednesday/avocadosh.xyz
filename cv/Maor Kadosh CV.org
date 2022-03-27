@@ -3,7 +3,7 @@
 --------------
 
 #+begin_quote
-System Administrator & Fullstack Developer specialized in *Python*, *GNU/Linux*, and *Splunk*
+DevOps Engineer & Fullstack Developer specialized in *Python*, *GNU/Linux*, and *Splunk*
 #+end_quote
 
 --------------
