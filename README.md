@@ -1,4 +1,4 @@
-Dont forget to run `just publish` in a cronjob on your PC:)
+Dont forget to run `lastfm_collage_generator` in a cronjob on your server:)
 
 A `.env` file needs to be present with the following fields:
 - LASTFM_API_KEY

@@ -1,5 +1,11 @@
 """
-A script intended to run on my server, see collage-dir stanza in the justfile
+Fetches the 9 albums I've been obsessed with over the last 30 days and creates
+a pretty picture of them :)
+
+Can be used either as a:
+- module, see CvGenerator in pelicanconf.py
+- CLI script, see the main function in the module. This should probably happen
+  in a cronjob
 """
 
 import os
