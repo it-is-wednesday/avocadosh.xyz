@@ -112,7 +112,7 @@ def generate_test_collage():
         letters = random.choices(ascii_lowercase + " ", k=random.randint(5, 50))
         return "".join(letters).strip()
 
-    art = Image.open("collage/sample_album_cover.jpg").convert("RGBA")
+    art = Image.open("content/static/me.webp").convert("RGBA")
 
     return generate_collage(
         Album(title=random_string(), artist=random_string(), cover_art=art)

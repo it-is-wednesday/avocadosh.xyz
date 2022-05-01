@@ -134,6 +134,12 @@ blockquote {
   margin-bottom: 1.35rem;
 }
 
+#me {
+  background: url("/static/me.webp");
+  height: 300px;
+  margin-bottom: 1rem;
+}
+
 #logo-and-title {
   display: flex;
   gap: 0.5rem;

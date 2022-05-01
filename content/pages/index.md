@@ -17,8 +17,10 @@ save_as: index.html
     </li>
 {%- endmacro %}
 
-
 <div class="index">
+
+<div id="me"></div>
+
 <div class="walked-inland">
     <div>I walked inland with water pouring out of my suitcase</div>
     <div>It was heavy so I dumped it out and stuck all the plastic bags back in</div>
@@ -54,8 +56,8 @@ save_as: index.html
         "converts webpages into <i>readable</i> epub/mobi/pdf files. like, removes the usual webshit clutter",
         "clojure") }}
 </ul>
-⟲ 30 days
+⟲ 30 days (<a href="https://github.com/it-is-wednesday/avocadosh.xyz/blob/main/collage/lastfm_collage_generator.py">script</a>)
 <a href="{{ SITEURL }}/theme/lastfm-collage.webp">
-    <img class="wide-image" src="{{ SITEURL }}/theme/lastfm-collage.webp">
+    <img class="wide-image" src="{{ SITEURL }}/theme/lastfm-collage.webp"/>
 </a>
 </div>
