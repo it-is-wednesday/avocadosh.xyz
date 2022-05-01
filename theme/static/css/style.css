@@ -134,6 +134,11 @@ blockquote {
   margin-bottom: 1.35rem;
 }
 
+#logo-and-title {
+  display: flex;
+  gap: 0.5rem;
+}
+
 /* rules for computer screens */
 @media (min-width: 1000px) {
   body {
