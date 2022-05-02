@@ -2,6 +2,12 @@ title: ʕ •́؈•̀)
 date: 2022-02-21
 save_as: index.html
 
+<style>
+h1 {
+  margin-inline-start: 2rem;
+}
+</style>
+
 {% macro fruit(url, title, desc, lang) -%}
     {% set lang_name = {"clojure": "clojure", "python": "🐍", "ocaml": "ocaml🐪", "elisp": "emacs lisp🦬"}[lang] -%}
     <li>
