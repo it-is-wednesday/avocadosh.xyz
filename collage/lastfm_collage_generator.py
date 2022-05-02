@@ -10,6 +10,7 @@ Can be used either as a:
 
 import os
 import random
+import sys
 from argparse import ArgumentParser
 from dataclasses import dataclass
 from itertools import product
@@ -88,14 +89,15 @@ def overlay(text: str) -> Image.Image:
     return rect
 
 
-def generate_collage(albums: Iterable[Album]):
+def generate_collage(albums: Iterable[Album], print_progress=True):
     result_img = Image.new("RGBA", (3 * IMAGE_EDGE_SIZE, 3 * IMAGE_EDGE_SIZE))
+    out_stream = sys.stdout if print_progress else open(os.devnull, "w")
 
-    print("\nGenerating Last.fm collage:")
+    print("\nGenerating Last.fm collage:", file=out_stream)
 
     # place covers in (0, 300), (0, 600), (0, 900), (300, 0) ...
     for album, (x, y) in zip(albums, product(range(3), range(3))):
-        print(f'  ✔ Fetched "{album.title}" by {album.artist}')
+        print(f'  ✔ Fetched "{album.title}" by {album.artist}', file=out_stream)
 
         base_cover = album.cover_art
         label = f"{album.title}\n{album.artist}"
@@ -114,10 +116,12 @@ def generate_test_collage():
 
     art = Image.open("content/static/me.webp").convert("RGBA")
 
-    return generate_collage(
+    albums = [
         Album(title=random_string(), artist=random_string(), cover_art=art)
         for _ in range(9)
-    )
+    ]
+
+    return generate_collage(albums, print_progress=False)
 
 
 def main():
