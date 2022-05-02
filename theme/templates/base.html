@@ -7,7 +7,7 @@
             <meta charset="utf-8" />
             <meta name="generator" content="Pelican" />
             <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/style.css" />
-	        <link href="{{ SITEURL }}/theme/css/prism.css" rel="stylesheet" />
+	        <link href="{{ SITEURL }}/theme/css/pygments.css" rel="stylesheet" />
 
             {% if FEED_ALL_ATOM %}
                 <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
@@ -79,42 +79,7 @@
 
         {% block content %}
         {% endblock %}
-
-        <!-- Included languages:
-             Python, Clojure, Lisp, Bash + Shell
-
-             Included Plugins:
-             Normalize Whitespace
-
-             Theme: Coy
-        -->
-        <script src="{{ SITEURL }}/theme/js/prism.js" data-manual></script>
-        <script>
-         const srcDiv = Array.from(document.getElementsByClassName("src"));
-
-         const findLang = tag => {
-             const class_ = Array.from(tag.classList).find(c => c.startsWith("src-"));
-             return class_.match(/src-(.*)/)[1];
-         }
-
-         for (const pre of srcDiv) {
-             const code = pre.innerHTML;
-             const codeElem = document.createElement("code");
-             codeElem.innerHTML = code;
-             codeElem.className = `language-${findLang(pre)}`;
-             pre.innerHTML = "";
-             pre.appendChild(codeElem);
-         }
-
-         Prism.plugins.NormalizeWhitespace.setDefaults({
-             'tabs-to-spaces': 8,
-         });
-
-         Prism.highlightAll();
-        </script>
-
         <div id="banner-bottom">
         </div>
-
     </body>
 </html>

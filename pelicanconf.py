@@ -38,20 +38,22 @@ EXTRA_PATH_METADATA = {
     "static/favicon.ico": {"path": "favicon.ico"},
 }
 
+#
+MARKDOWN = {
+    "extension_configs": {
+        "markdown.extensions.codehilite": {"css_class": "highlight"},
+        "markdown.extensions.extra": {},
+        "markdown.extensions.meta": {},
+    },
+    "output_format": "html5",
+    "extensions": ["admonition", "codehilite"],
+}
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM: Optional[str] = None
 CATEGORY_FEED_ATOM: Optional[str] = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
-
-# Blogroll
-LINKS = (
-    ("Pelican", "https://getpelican.com/"),
-    ("Python.org", "https://www.python.org/"),
-    ("Jinja2", "https://palletsprojects.com/p/jinja/"),
-    ("You can modify those links in your config file", "#"),
-)
 
 # Social widget
 SOCIAL = (
@@ -68,9 +70,7 @@ DEFAULT_PAGINATION = False
 # RELATIVE_URLS = True
 
 PLUGIN_PATHS = [str(Path("~/.local/pelican-plugins").expanduser())]
-PLUGINS = ["org_reader", "jinja2content"]
-ORG_READER_EMACS_LOCATION = "/usr/bin/emacs"
-ORG_READER_EMACS_SETTINGS = Path("./emacs_settings.el").absolute()
+PLUGINS = ["jinja2content"]
 
 INDEX_SAVE_AS = "posts.html"
 

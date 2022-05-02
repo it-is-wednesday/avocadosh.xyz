@@ -54,7 +54,7 @@ h1 {
   gap: 1rem;
 }
 
-.index, #menu, #content, #banner-top-top-socials, h1 {
+.index, #menu, #content, #banner-top-top-socials {
   padding: 0 2rem;
 }
 
@@ -104,6 +104,11 @@ blockquote {
   margin: 0 0.2rem;
 }
 
+/* pygments code blocks */
+.highlight {
+  overflow-y: scroll;
+}
+
 #banner-top {
   background: url("/theme/images/top.png") no-repeat center,
     url("/theme/images/top-grad.png") repeat-x scroll;
@@ -143,6 +148,7 @@ blockquote {
 #logo-and-title {
   display: flex;
   gap: 0.5rem;
+  margin-inline-start: 2rem;
 }
 
 /* rules for computer screens */
