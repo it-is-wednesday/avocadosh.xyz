@@ -13,10 +13,6 @@ html {
   /* for mobile */
   padding-right: 14px;
   padding-left: 14px;
-
-  /* beacuse firefox mobile acted up; interface was really small there */
-  font-size: max(2vh, 15px);
-  font-size-adjust: none;
 }
 
 body {
