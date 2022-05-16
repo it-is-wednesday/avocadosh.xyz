@@ -1,4 +1,5 @@
 Title: Attempting REPL-Driven Development in Python
+Slug: repl-driven-development-in-python
 Date: 2021-10-07
 Tags: Python
 
