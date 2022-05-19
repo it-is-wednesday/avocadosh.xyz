@@ -9,10 +9,6 @@
 html {
   background-color: #daf3fd;
   word-break: break-word;
-
-  /* for mobile */
-  padding-right: 14px;
-  padding-left: 14px;
 }
 
 body {
@@ -112,7 +108,6 @@ blockquote {
   display: flex;
   align-items: baseline;
   flex-direction: column;
-  height: var(--banner-height);
 }
 
 #banner-bottom {
@@ -152,6 +147,10 @@ blockquote {
 @media (min-width: 1000px) {
   body {
     max-width: 50rem;
+  }
+
+  #banner-top {
+    height: var(--banner-height);
   }
 
   #banner-top-top {
