@@ -112,6 +112,7 @@ blockquote {
   display: flex;
   align-items: baseline;
   flex-direction: column;
+  height: var(--banner-height);
 }
 
 #banner-bottom {
