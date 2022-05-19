@@ -17,7 +17,6 @@ publish: clean lint build-collage-generator
 
     scp -r ./collage/dist/*.whl www-data@avocadosh.xyz:/tmp/
 
-    # pipx cannot install .whl if it isn't in the current directory xd
     ssh www-data@avocadosh.xyz \
         '~/collage-venv/bin/pip install --upgrade /tmp/lastfm_collage_generator-*.whl'
 
