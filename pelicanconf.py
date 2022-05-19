@@ -55,15 +55,6 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# Social widget
-SOCIAL = (
-    ("L*nkedIn", "https://www.linkedin.com/in/ma-or/"),
-    ("GitHub", "https://github.com/it-is-wednesday/"),
-    ("Last.fm", "https://www.last.fm/user/jpegaga"),
-    ("Instagram", "https://www.instagram.com/maror.pashosh/"),
-    ("OpenDota", "https://www.opendota.com/players/118991125"),
-)
-
 DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing

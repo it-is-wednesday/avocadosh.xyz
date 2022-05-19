@@ -46,7 +46,9 @@ h1 {
   gap: 1rem;
 }
 
-.index, #menu, #content, #banner-top-top-socials {
+.index,
+#menu,
+#content {
   padding: 0 2rem;
 }
 
@@ -55,7 +57,9 @@ h1 {
 }
 
 /* hide author info and category info and post previews at index */
-#post-list .entry-content, .author, .category {
+#post-list .entry-content,
+.author,
+.category {
   display: none;
 }
 
@@ -92,10 +96,6 @@ blockquote {
   object-fit: contain;
 }
 
-.socials-sep {
-  margin: 0 0.2rem;
-}
-
 /* pygments code blocks */
 .highlight {
   overflow-y: scroll;
@@ -108,27 +108,13 @@ blockquote {
   display: flex;
   align-items: baseline;
   flex-direction: column;
+  height: var(--banner-height);
 }
 
 #banner-bottom {
   background: url("/theme/images/bottom.png") no-repeat center,
     url("/theme/images/bottom-grad.png") repeat-x scroll;
   height: var(--banner-height);
-}
-
-#banner-top-top {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-}
-
-#banner-top-top-socials {
-  display: flex;
-  flex-direction: row;
-  font-size: 0.8rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.35rem;
 }
 
 #me {
@@ -147,17 +133,5 @@ blockquote {
 @media (min-width: 1000px) {
   body {
     max-width: 50rem;
-  }
-
-  #banner-top {
-    height: var(--banner-height);
-  }
-
-  #banner-top-top {
-    flex-direction: row;
-  }
-
-  #banner-top-top-socials {
-    padding-top: 1rem;
   }
 }

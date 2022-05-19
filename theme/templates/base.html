@@ -49,27 +49,17 @@
         </div>
 
         <header id="banner-top" class="body">
-            <div id="banner-top-top">
-                <h1 id="logo-and-title">
-                    <a href="{{ SITEURL }}/">
-                        <img src="{{ SITEURL }}/static/logo.webp" alt="rly cool logo"/>
-                    </a>
-                    <a href="{{ SITEURL }}/">
-                        {{ SITENAME }}
-                        {% if SITESUBTITLE %}
-                            <strong>{{ SITESUBTITLE }}</strong>
-                        {% endif %}
-                    </a>
-                </h1>
-                <div id="banner-top-top-socials">
-                    {% for title, link in SOCIAL %}
-                        <a href="{{ link }}">{{ title }}</a>
-                        {% if not loop.last %}
-                            <div class="socials-sep">|</div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
+            <h1 id="logo-and-title">
+                <a href="{{ SITEURL }}/">
+                    <img src="{{ SITEURL }}/static/logo.webp" alt="rly cool logo"/>
+                </a>
+                <a href="{{ SITEURL }}/">
+                    {{ SITENAME }}
+                    {% if SITESUBTITLE %}
+                        <strong>{{ SITESUBTITLE }}</strong>
+                    {% endif %}
+                </a>
+            </h1>
 
             <nav id="menu">
                 {% for title, link in MENUITEMS %}
