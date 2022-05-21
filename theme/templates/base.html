@@ -53,8 +53,18 @@
                 <a href="{{ SITEURL }}/">
                     <img src="{{ SITEURL }}/static/logo.webp" alt="rly cool logo"/>
                 </a>
-                <a href="{{ SITEURL }}/">
-                    {{ SITENAME }}
+                <a href="{{ SITEURL }}/" style="padding-top: 5px">
+                    <div id="sitename">
+                        {% for letter in SITENAME %}
+                            <div class="sitename-letter">{{ letter }}</div>
+                        {% endfor %}
+                    </div>
+                    <script>
+                     for (const l of document.getElementsByClassName("sitename-letter")) {
+                         const margin = Math.floor(Math.random() * 15);
+                         l.style.marginRight = `${margin}px`;
+                     }
+                    </script>
                     {% if SITESUBTITLE %}
                         <strong>{{ SITESUBTITLE }}</strong>
                     {% endif %}

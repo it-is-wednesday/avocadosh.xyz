@@ -123,6 +123,11 @@ blockquote {
   margin-bottom: 1rem;
 }
 
+#sitename {
+  display: flex;
+  flex-direction: row;
+}
+
 #logo-and-title {
   display: flex;
   gap: 0.5rem;
