@@ -65,7 +65,7 @@ PLUGINS = ["jinja2content"]
 
 INDEX_SAVE_AS = "posts.html"
 
-MENUITEMS = (("Home", "/"), ("Posts", "/posts.html"), ("CV", "/Maor Kadosh CV.pdf"))
+MENUITEMS = (("Home", "/"), ("Posts", "/posts.html"))
 
 
 def get_cv_generator(pelican_object: Pelican):
