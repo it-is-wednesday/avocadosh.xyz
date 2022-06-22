@@ -10,3 +10,6 @@ dependencies = ["pylast==4.5.0", "Pillow==9.0.1", "python-dotenv==0.19.2"]
 
 [project.scripts]
 lastfm-collage-generator = "lastfm_collage_generator:main"
+
+[tool.pylint.basic]
+good-names = ["i", "j", "k", "f", "x", "y", "ex", "Run", "_"]

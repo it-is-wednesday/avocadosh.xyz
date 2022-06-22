@@ -31,6 +31,7 @@ FONT_SIZE = 15
 
 @dataclass
 class Album:
+    "Represents a single square in our collage"
     title: str
     artist: str
     cover_art: Image.Image
@@ -64,11 +65,12 @@ def fetch_albums() -> Iterator[Album]:
         ):
             continue
 
-        yield Album(
-            title=alb.title,
-            artist=alb.artist.name,
-            cover_art=Image.open(urlopen(alb.get_cover_image())).convert("RGBA"),
-        )
+        with urlopen(alb.get_cover_image()) as cover:
+            yield Album(
+                title=alb.title,
+                artist=alb.artist.name,
+                cover_art=Image.open(cover).convert("RGBA"),
+            )
 
 
 def overlay(text: str) -> Image.Image:
@@ -90,8 +92,11 @@ def overlay(text: str) -> Image.Image:
 
 
 def generate_collage(albums: Iterable[Album], print_progress=True):
+    "Return an RGB Pillow.Image consisting of these albums"
     result_img = Image.new("RGBA", (3 * IMAGE_EDGE_SIZE, 3 * IMAGE_EDGE_SIZE))
-    out_stream = sys.stdout if print_progress else open(os.devnull, "w")
+    # pylint: disable=unspecified-encoding,consider-using-with
+    devnull = open(os.devnull, "w")
+    out_stream = sys.stdout if print_progress else devnull
 
     print("\nGenerating Last.fm collage:", file=out_stream)
 
@@ -105,11 +110,15 @@ def generate_collage(albums: Iterable[Album], print_progress=True):
 
         result_img.paste(img, (x * IMAGE_EDGE_SIZE, y * IMAGE_EDGE_SIZE))
 
+    devnull.close()
+
     # from dust we came and to dust we will return
     return result_img.convert("RGB")
 
 
 def generate_test_collage():
+    "Returns a dummy collage generated from the pre-downloaded, just for dev"
+
     def random_string() -> str:
         letters = random.choices(ascii_lowercase + " ", k=random.randint(5, 50))
         return "".join(letters).strip()
@@ -125,9 +134,10 @@ def generate_test_collage():
 
 
 def main():
-    p = ArgumentParser()
-    p.add_argument("target_path", help="Path for saved collage WEBP image")
-    path = p.parse_args().target_path
+    "CLI entry point"
+    parser = ArgumentParser()
+    parser.add_argument("target_path", help="Path for saved collage WEBP image")
+    path = parser.parse_args().target_path
 
     load_dotenv()
     generate_collage(fetch_albums()).save(path, quality=40)
