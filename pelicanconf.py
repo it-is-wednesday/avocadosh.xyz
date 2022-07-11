@@ -71,7 +71,7 @@ MENUITEMS = (("Home", "/"), ("Posts", "/posts.html"))
 def get_cv_generator(pelican_object: Pelican):
     class CvGenerator(Generator):
         def generate_output(self, writer: Writer):
-            input_file = Path("./cv/Maor Kadosh CV.org")
+            input_file = Path("./cv/cv.org")
 
             any_missing = not cv.already_generated(input_file.stem, writer.output_path)
             if pelican_object.settings["CV_RERENDER"] or any_missing:
